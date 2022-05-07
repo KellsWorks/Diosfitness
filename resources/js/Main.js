@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Example from './components/Example'
+import '../css/app.css'
+import './css/style.scss'
+import Dashboard from './pages/Dashboard';
 
 const Main = () => {
 
     return(
         <BrowserRouter>
             <Routes>
-                <Route exact path="/"  element={<Example/>} />
+                <Route exact path="/"  element={<Dashboard/>} />
             </Routes>
         </BrowserRouter>
     )
