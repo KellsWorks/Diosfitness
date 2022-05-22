@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manufacturers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ManufacturersController extends Controller
 {
     /**Create Model Entry */
-    public function create(Request $request) : JsonResponse
+    public function register(Request $request) : JsonResponse
     {
         $validator = Validator::make($request->all(), [
-
+            'name' => 'required|string',
+            'mobile' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'status' => 'required|string'
         ]);
 
         if($validator->fails()){
@@ -21,8 +27,16 @@ class ManufacturersController extends Controller
             ]);
         }
 
+        Manufacturers::create([
+            'name' => $request->name,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'status' => 1
+        ]);
+
         return response()->json([
-            'message' => 'Created successfully'
+            'message' => 'Manufacturer created successfully'
         ], 200);
     }
 

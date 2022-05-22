@@ -16,7 +16,12 @@ class Manufacturers extends Authenticatable
         'name',
         'mobile',
         'email',
-        'device_id',
+        'password',
         'status'
     ];
+
+    public function products(){
+
+        return $this->hasMany(Products::class);
+    }
 }

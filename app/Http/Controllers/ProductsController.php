@@ -48,4 +48,28 @@ class ProductsController extends Controller
             'message' => 'Product added successfully'
         ]);
     }
+
+    public function getProducts(Request $request){
+
+        return response()->json([
+            'products' => Products::all()
+        ]);
+    }
+
+    public function getProductsByManufacturer(Request $request){
+
+        return response()->json([
+            'products' => Products::where('manufacturer_id', $request->manufacturer_id)->get()
+        ]);
+    }
+
+    public function delete(Request $request){
+
+        Products::find($request->id)->delete();
+
+        return response()->json([
+            'message' => 'Product deleted successfully'
+        ]);
+
+    }
 }
