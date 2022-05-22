@@ -28,6 +28,8 @@ Route::prefix('shop-owners')->group( function() {
 
     Route::post('register', [ShopOwnersController::class, 'register']);
 
+    Route::post('login', [ShopOwnersController::class, 'login']);
+
 });
 
 Route::prefix('technicians')->group( function() {
@@ -49,9 +51,9 @@ Route::prefix('products')->group( function() {
 
     Route::post('create', [CustomersController::class, 'create']);
 
-    Route::post('all', [CustomersController::class, 'getProducts']);
+    Route::get('all', [CustomersController::class, 'getProducts']);
 
-    Route::post('all-by-manufacturer', [CustomersController::class, 'getProductsByManufacturer']);
+    Route::get('all-by-manufacturer', [CustomersController::class, 'getProductsByManufacturer']);
 
 });
 
